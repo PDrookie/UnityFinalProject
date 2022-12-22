@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && MaxJumpCount > 0)
+        if (Input.GetButtonDown("Jump") && MaxJumpCount > 0)
         {
             SpacePress = true;
         }
@@ -128,7 +128,14 @@ public class PlayerMove : MonoBehaviour
 
         if (HorizontalMove != 0)
         {
-            transform.localScale = new Vector3(HorizontalMove, 1, 1);
+            if (HorizontalMove > 0)
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+            else if(HorizontalMove < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
         }
     }
 
