@@ -42,7 +42,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && MaxJumpCount > 0)
+        if (Input.GetButtonDown("Jump") && MaxJumpCount > 0)
         {
             SpacePress = true;
         }
