@@ -21,7 +21,7 @@ public class SwitchCamera : MonoBehaviour
     void Start()
     {
         Vector3 PlayerPos = Player.position;
-        MainCam.transform.position = new Vector3(PlayerPos.x, PlayerPos.y, -10);
+        MainCam.transform.position = new Vector3(PlayerPos.x, PlayerPos.y, -8);
         PlayerX = Player.position.x;
         PlayerY = Player.position.y;
     }
