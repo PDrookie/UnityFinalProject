@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class PlayerAttributes : MonoBehaviour
 {
-    
-    [SerializeField]private int HP;
-    [SerializeField]private int ATK;
-    [SerializeField]private int DEX;
-    [SerializeField]private int DEF;
+    [SerializeField] private int HP;
+    [SerializeField] private int ATK;
+    [SerializeField] private int DEX;
+    [SerializeField] private int DEF;
     private bool doubleJump;
     private bool DoubleJump
     {
         get { return doubleJump; }
         set
         {
-            if(value && !doubleJump)
+            if (value && !doubleJump)
             {
                 transform.GetComponent<PlayerMove>().MaxJumpTime = 2;
             }
             doubleJump = value;
-            
+
         }
     }
     private bool dash;
@@ -47,6 +46,9 @@ public class PlayerAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            DoubleJump = true;
+        }
     }
 }
