@@ -9,16 +9,17 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private LayerMask LM;
     [SerializeField] private Transform Checkpoint;
     [SerializeField] private string AirWallTag;
-    [SerializeField] private int MaxJumpCount;
+    
     [SerializeField] private float MoveSpeed;
     [SerializeField] private float JumpForce;
     [SerializeField] private float WallJumpXForce;
     [SerializeField] private float SlideGravity;
     private Rigidbody2D RB;
+    private int JumpCount;
     private bool SpacePress;
     private bool NotOnWallOrSkill;
     private bool IsJumping;
-    private int JumpCount;
+    public int MaxJumpTime;
     private float NormalGravity;
     private float HorizontalMove;
     private struct _WallTrigger
@@ -29,20 +30,21 @@ public class PlayerMove : MonoBehaviour
     private _WallTrigger WallTrigger;
     void Start()
     {
+        
         RB = GetComponent<Rigidbody2D>();
         NormalGravity = RB.gravityScale;
         NotOnWallOrSkill = true;
         WallTrigger.OnWall = false;
         WallTrigger.WallDirection = 0;
         IsJumping = false;
-
-        JumpCount = MaxJumpCount;
+        MaxJumpTime = 1;                            //DEFAULT INI
+        JumpCount = MaxJumpTime;
         //transform.position = InitailPos;  
     }
-
+    
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && MaxJumpCount > 0)
+        if (Input.GetButtonDown("Jump") && JumpCount > 0)
         {
             SpacePress = true;
         }
@@ -50,10 +52,10 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.1f, LM);
+        IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.2f, LM);
         if (!IsJumping)
         {
-            MaxJumpCount = JumpCount;
+            JumpCount = MaxJumpTime;
         }
         if (WallTrigger.OnWall && RB.velocity.y < 0)
         {
@@ -90,7 +92,7 @@ public class PlayerMove : MonoBehaviour
 
         if (collision.tag.Equals(AirWallTag))
         {
-            MaxJumpCount = JumpCount;
+            JumpCount = MaxJumpTime;
             WallTrigger.OnWall = true;
             if (collision.transform.position.x < transform.position.x)
             {
@@ -134,28 +136,28 @@ public class PlayerMove : MonoBehaviour
 
     void jump()
     {
-        if (SpacePress && MaxJumpCount == JumpCount)
+        if (SpacePress && JumpCount == MaxJumpTime)
         {
             IsJumping = true;
             RB.velocity = new Vector2(RB.velocity.x, JumpForce);
-            MaxJumpCount--;
+            JumpCount--;
             SpacePress = false;
         }
-        else if (SpacePress && IsJumping && MaxJumpCount > 0)
+        else if (SpacePress && IsJumping && JumpCount > 0)
         {
             RB.velocity = new Vector2(RB.velocity.x, JumpForce);
-            MaxJumpCount--;
+            JumpCount--;
             SpacePress = false;
         }
     }
 
     void WallJump(int RightOrLeft)
     {
-        if (JumpCount > 0 && WallTrigger.OnWall)
+        if (JumpCount > 0 && WallTrigger.OnWall && SpacePress)
         {
             IsJumping = true;
             RB.velocity = new Vector2(WallJumpXForce * RightOrLeft, JumpForce);
-            MaxJumpCount--;
+            JumpCount--;
             SpacePress = false;
         }
     }

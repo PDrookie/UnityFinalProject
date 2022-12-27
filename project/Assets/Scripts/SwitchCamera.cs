@@ -33,6 +33,8 @@ public class SwitchCamera : MonoBehaviour
         PlayerY = Player.position.y;
         DistanceX = PlayerX - MainCam.transform.position.x;
         DistanceY = PlayerY - MainCam.transform.position.y;
+        MainCam.transform.position = new Vector3(Player.position.x, Player.position.y + 3, MainCam.transform.position.z);
+        /*
         if (DistanceX > HorCameraDistance)
         {
             MainCam.transform.position = new Vector3(MainCam.transform.position.x + HorCameraDistance * 2, MainCam.transform.position.y, MainCam.transform.position.z);
@@ -49,6 +51,7 @@ public class SwitchCamera : MonoBehaviour
         {
             MainCam.transform.position = new Vector3(MainCam.transform.position.x, MainCam.transform.position.y - VerCameraDistance * 2, MainCam.transform.position.z);
         }
+        */
     }
 }
 
