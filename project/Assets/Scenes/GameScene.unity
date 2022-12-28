@@ -108700,7 +108700,7 @@ GameObject:
   - component: {fileID: 353071050}
   - component: {fileID: 353071049}
   - component: {fileID: 353071048}
-  - component: {fileID: 353071053}
+  - component: {fileID: 353071054}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -108838,7 +108838,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &353071053
+--- !u!114 &353071054
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108847,7 +108847,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 353071047}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2890a9be1e9064e4bbfe58ef21f0447c, type: 3}
+  m_Script: {fileID: 11500000, guid: b71f728130dd8cf4fa9c890d91b15852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   HP: 100
