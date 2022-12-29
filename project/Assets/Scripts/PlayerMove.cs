@@ -15,10 +15,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float WallJumpXForce;
     [SerializeField] private float SlideGravity;
     private Rigidbody2D RB;
-    private int JumpCount;
-    private bool SpacePress;
-    private bool NotOnWallOrSkill;
-    private bool IsJumping;
+    [SerializeField]private int JumpCount;
+    [SerializeField]private bool SpacePress;
+    [SerializeField]private bool NotOnWallOrSkill;
+    [SerializeField]private bool IsJumping;
     public int MaxJumpTime;
     private float NormalGravity;
     private float HorizontalMove;
@@ -52,7 +52,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.2f, LM);
+        IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.3f, LM);
         if (!IsJumping)
         {
             JumpCount = MaxJumpTime;
@@ -103,7 +103,7 @@ public class PlayerMove : MonoBehaviour
                 WallTrigger.WallDirection = -1;
             }
             NotOnWallOrSkill = false;
-            if (Physics2D.OverlapCircle(Checkpoint.position, 0.1f, LM))
+            if (Physics2D.OverlapCircle(Checkpoint.position, 0.3f, LM))
             {
                 NotOnWallOrSkill = true;
                 WallTrigger.OnWall = false;
@@ -128,9 +128,13 @@ public class PlayerMove : MonoBehaviour
             RB.velocity = new Vector2(HorizontalMove * MoveSpeed, RB.velocity.y);
         }
 
-        if (HorizontalMove != 0)
+        if (HorizontalMove > 0)
         {
-            transform.localScale = new Vector3(HorizontalMove, 1, 1);
+            transform.localScale = new Vector3(-2.3523f, transform.localScale.y, 1);
+        }
+        else if (HorizontalMove < 0)
+        {
+            transform.localScale = new Vector3(2.3523f, transform.localScale.y, 1);
         }
     }
 
