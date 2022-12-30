@@ -17,6 +17,7 @@ public class EnemyFlyEye : CaveEnemy
     public void Start()
     {
         base.Start();
+
         waitTime = startWaitTime;
         movePos.position = GetRandomPos();
     }
