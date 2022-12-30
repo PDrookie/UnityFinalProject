@@ -18,6 +18,7 @@ public class EnemyCrab : CaveEnemy
     {
         base.Start();
         wait = waitTime;
+        transform.name = "1";
     }
 
     // Update is called once per frame

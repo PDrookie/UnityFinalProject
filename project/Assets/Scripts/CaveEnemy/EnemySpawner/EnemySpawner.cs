@@ -11,6 +11,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     private GameObject Enemy;
 
+    [SerializeField]
+    private GameObject EnemyFolder;
+
     private void Start()
     {
         Spawner();
@@ -20,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     {
         for(int i = 0; i < Spawners.Length; i++)
         {
-            Instantiate(Enemy, Spawners[i].position, Spawners[i].rotation);
+            Instantiate(Enemy, Spawners[i].position, Spawners[i].rotation,EnemyFolder.transform);
         }
     }
 

@@ -15,13 +15,13 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float WallJumpXForce;
     [SerializeField] private float SlideGravity;
     private Rigidbody2D RB;
-    [SerializeField]private int JumpCount;
-    [SerializeField]private bool SpacePress;
-    [SerializeField]private bool NotOnWallOrSkill;
-    [SerializeField]private bool IsJumping;
+    private int JumpCount;
+    private bool SpacePress;
+    private bool NotOnWallOrSkill;
+    public bool IsJumping;
     public int MaxJumpTime;
     private float NormalGravity;
-    private float HorizontalMove;
+    public float HorizontalMove;
     private struct _WallTrigger
     {
         public bool OnWall;
@@ -130,11 +130,11 @@ public class PlayerMove : MonoBehaviour
 
         if (HorizontalMove > 0)
         {
-            transform.localScale = new Vector3(-2.3523f, transform.localScale.y, 1);
+            transform.localScale = new Vector3(-1.692233f, transform.localScale.y, 1);
         }
         else if (HorizontalMove < 0)
         {
-            transform.localScale = new Vector3(2.3523f, transform.localScale.y, 1);
+            transform.localScale = new Vector3(1.692233f, transform.localScale.y, 1);
         }
     }
 

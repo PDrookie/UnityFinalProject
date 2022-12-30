@@ -17,6 +17,7 @@ public abstract class CaveEnemy : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.color;
+        gameObject.name = "1";
     }
 
     // Update is called once per frame
