@@ -18,7 +18,7 @@ public class PlayerHited : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (PM.IsHited)
         {
@@ -34,7 +34,6 @@ public class PlayerHited : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Enemy"))
         {
-            Debug.Log("?");
             countTime = 0;
             playerRB.velocity = Vector2.zero;
             PM.IsHited = true;

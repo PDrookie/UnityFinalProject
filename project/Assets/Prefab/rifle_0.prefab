@@ -152,6 +152,7 @@ MonoBehaviour:
   SlideGravity: 0.5
   IsJumping: 0
   MaxJumpTime: 1
+  IsHited: 0
   HorizontalMove: 0
 --- !u!114 &7273378386389449840
 MonoBehaviour:
@@ -193,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68b9a763836f23c489b2ef4b9aa179f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HitForce: 0
+  HitTime: 0
 --- !u!1 &7273378387056457062
 GameObject:
   m_ObjectHideFlags: 0

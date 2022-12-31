@@ -19,7 +19,15 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(PM.HorizontalMove == 0)
+        if (PM.IsHited)
+        {
+            PlayerAni.SetBool("IsHit", true);
+        }
+        else if (!PM.IsHited)
+        {
+            //PlayerAni.SetBool("IsHit", false);
+        }
+        if (PM.HorizontalMove == 0)
         {
             PlayerAni.SetInteger("speed", 0);
         }
@@ -36,5 +44,10 @@ public class PlayerAnimation : MonoBehaviour
             PlayerAni.SetBool("IsJump", false);
         }
 
+    }
+    void HitFinish()
+    {
+        //Debug.Log("...");
+        PlayerAni.SetBool("IsHit", false);
     }
 }
