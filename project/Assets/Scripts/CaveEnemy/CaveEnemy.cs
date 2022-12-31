@@ -27,7 +27,6 @@ public abstract class CaveEnemy : MonoBehaviour
     {
         if (Health <= 0)
         {
-            animator.SetTrigger("Die");
             Destroy(gameObject);
         }
     }
