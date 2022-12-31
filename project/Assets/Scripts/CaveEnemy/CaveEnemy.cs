@@ -12,6 +12,8 @@ public abstract class CaveEnemy : MonoBehaviour
     private SpriteRenderer sr;
     private Color originalColor;
 
+    private Animator animator;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -25,6 +27,7 @@ public abstract class CaveEnemy : MonoBehaviour
     {
         if (Health <= 0)
         {
+            animator.SetTrigger("Die");
             Destroy(gameObject);
         }
     }
