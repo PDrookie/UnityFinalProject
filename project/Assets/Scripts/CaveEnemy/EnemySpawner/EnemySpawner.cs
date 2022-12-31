@@ -23,7 +23,11 @@ public class EnemySpawner : MonoBehaviour
     {
         for(int i = 0; i < Spawners.Length; i++)
         {
-            Instantiate(Enemy, Spawners[i].position, Spawners[i].rotation,EnemyFolder.transform);
+            GameObject Monsters = Instantiate(Enemy, Spawners[i].position, Spawners[i].rotation,EnemyFolder.transform);
+            Monsters.transform.tag = "Enemy";
+            
+            //Monsters.AddComponent<CapsuleCollider2D>();
+            //Monsters.GetComponent<CapsuleCollider2D>().isTrigger = true;
         }
     }
 

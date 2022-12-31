@@ -19,7 +19,7 @@ public abstract class CaveEnemy : MonoBehaviour
     {
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.color;
-        gameObject.name = "1";
+        //gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
     }
 
     // Update is called once per frame

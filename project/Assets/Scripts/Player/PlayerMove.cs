@@ -20,6 +20,7 @@ public class PlayerMove : MonoBehaviour
     private bool NotOnWallOrSkill;
     public bool IsJumping;
     public int MaxJumpTime;
+    public bool IsHited;
     private float NormalGravity;
     public float HorizontalMove;
     private struct _WallTrigger
@@ -39,6 +40,7 @@ public class PlayerMove : MonoBehaviour
         IsJumping = false;
         MaxJumpTime = 1;                            //DEFAULT INI
         JumpCount = MaxJumpTime;
+        IsHited = false;
         //transform.position = InitailPos;  
     }
     
@@ -52,6 +54,10 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (IsHited)
+        {
+            return;
+        }
         IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.3f, LM);
         if (!IsJumping)
         {
