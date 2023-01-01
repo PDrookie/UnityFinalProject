@@ -47,4 +47,11 @@ public abstract class CaveEnemy : MonoBehaviour
         sr.color = Color.red;
         Invoke("ResetColor", time);
     }
+        private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag.Equals("Player"))
+        {
+            //Player Hurt
+        }
+    }
 }

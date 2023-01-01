@@ -9,6 +9,8 @@ public class PlayerHited : MonoBehaviour
     private Rigidbody2D playerRB;
     private PlayerMove PM;
     private float countTime;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +28,8 @@ public class PlayerHited : MonoBehaviour
         }
         if (countTime >= HitTime)
         {
+            //countTime = 0;
+            //Debug.Log(countTime + " " + HitTime);
             PM.IsHited = false;
         }
     }
