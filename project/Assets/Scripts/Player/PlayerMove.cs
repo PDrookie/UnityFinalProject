@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    #region
+    public static Transform instance;
+    #endregion
+
     [SerializeField] private Vector3 InitailPos;
 
     [SerializeField] private LayerMask LM;
@@ -14,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float JumpForce;
     [SerializeField] private float WallJumpXForce;
     [SerializeField] private float SlideGravity;
+
     private Rigidbody2D RB;
     private int JumpCount;
     private bool SpacePress;
@@ -23,12 +28,20 @@ public class PlayerMove : MonoBehaviour
     public bool IsHited;
     private float NormalGravity;
     public float HorizontalMove;
+
+    private void Awake()
+    {
+        instance = this.transform;
+    }
+
     private struct _WallTrigger
     {
         public bool OnWall;
         public int WallDirection;    //Right = -1,Left = 1
     }
+
     private _WallTrigger WallTrigger;
+
     void Start()
     {
         

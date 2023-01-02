@@ -128,7 +128,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6099384821512900934}
   m_Father: {fileID: 3309371260642116284}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -243,13 +244,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 10
-  Damage: 2
+  EnemyCauseDamage: 0
   flashTime: 0.2
-  Speed: 2
+  Speed: 1.2
   startWaitTime: 0.2
+  AttackRange: 10
+  shootingRange: 4.5
+  fireRate: 1
   movePos: {fileID: 3309371261278314043}
   LeftDownPos: {fileID: 3309371260990101822}
   RightUpPos: {fileID: 3309371261892692998}
+  bullet: {fileID: 3209887713464177901, guid: 61621e5658114444ab5114c48c76919a, type: 3}
+  bulletParent: {fileID: 6914904651576304293}
 --- !u!1 &3309371261892692997
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,4 +286,35 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3309371260642116284}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6914904651576304293
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6099384821512900934}
+  m_Layer: 0
+  m_Name: BulletParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6099384821512900934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6914904651576304293}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3309371261512716838}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
