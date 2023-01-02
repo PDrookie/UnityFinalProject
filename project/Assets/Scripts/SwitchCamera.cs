@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Constants
+public class CamConstants
 {
     public const int MapSize = 5;
 }

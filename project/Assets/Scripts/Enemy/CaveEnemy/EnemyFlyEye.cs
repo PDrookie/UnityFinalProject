@@ -27,7 +27,7 @@ public class EnemyFlyEye : CaveEnemy
     public void Start()
     {
         base.Start();
-
+        Health = 100;
         waitTime = startWaitTime;
         movePos.position = GetRandomPos();
 
@@ -101,7 +101,7 @@ public class EnemyFlyEye : CaveEnemy
     void flipTheBody()
     {
         float flyeyeDirection = movePos.position.x - transform.position.x;
-        Debug.Log(flyeyeDirection);
+        //Debug.Log(flyeyeDirection);
 
         if (flyeyeDirection > 0 && movingLeft)
         {

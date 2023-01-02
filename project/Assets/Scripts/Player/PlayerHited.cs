@@ -6,6 +6,7 @@ public class PlayerHited : MonoBehaviour
 {
     [SerializeField]private float HitForce;
     [SerializeField] private float HitTime;
+    [SerializeField] private GameObject DialogBox;
     private Rigidbody2D playerRB;
     private PlayerMove PM;
     private float countTime;
@@ -42,6 +43,21 @@ public class PlayerHited : MonoBehaviour
             playerRB.velocity = Vector2.zero;
             PM.IsHited = true;
             playerRB.AddForce(new Vector2(HitForce * (transform.position.x - collision.transform.position.x), HitForce * (transform.position.y - collision.transform.position.y)));
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag.Equals("mystery"))
+        {
+            DialogBox.SetActive(true);
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.transform.tag.Equals("mystery"))
+        {
+            DialogBox.SetActive(false);
         }
     }
 }

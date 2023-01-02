@@ -16,9 +16,10 @@ public class EnemyCrab : CaveEnemy
     // Start is called before the first frame update
     public void Start()
     {
+        Health = 100;
         base.Start();
         wait = waitTime;
-        transform.name = "1";
+        //Debug.Log(transform.parent.name);
     }
 
     // Update is called once per frame

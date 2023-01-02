@@ -10,10 +10,12 @@ public class PlayerAttack : MonoBehaviour
     private Animator SwordAni;
     private float TimeCounter;
     private Transform weapon;
+    private PlayerAttributes PA;
     // Start is called before the first frame update
     void Start()
     {
         PlayerAni = transform.GetComponent<Animator>();
+        PA = transform.GetComponent<PlayerAttributes>();
         IsAttack = false;
     }
 
@@ -22,7 +24,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            weapon = transform.Find("sword");
+            weapon = transform.GetChild(PA.TakingWeapon + 1);
             weapon.gameObject.SetActive(true);
             SwordAni = weapon.GetComponent<Animator>();
             SwordAni.SetBool("IsAttack", true);

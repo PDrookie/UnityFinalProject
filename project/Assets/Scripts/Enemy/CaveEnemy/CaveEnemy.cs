@@ -11,12 +11,12 @@ public abstract class CaveEnemy : MonoBehaviour
 
     private SpriteRenderer sr;
     private Color originalColor;
-    private PlayerMove PM;
+    private PlayerAttributes PA;
 
     // Start is called before the first frame update
     public void Start()
     {
-        PM = GetComponent<PlayerMove>();
+        PA = GameObject.Find("Player").GetComponent<PlayerAttributes>();
         sr = GetComponent<SpriteRenderer>();
         originalColor = sr.color;
         //gameObject.GetComponent<BoxCollider2D>().isTrigger = true;
@@ -46,5 +46,12 @@ public abstract class CaveEnemy : MonoBehaviour
     {
         sr.color = Color.red;
         Invoke("ResetColor", time);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.tag.Equals("weapon"))
+        {
+            Health -= PA.PlayerAtk;
+        }
     }
 }
