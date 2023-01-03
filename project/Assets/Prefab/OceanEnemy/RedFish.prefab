@@ -267,5 +267,7 @@ MonoBehaviour:
   movePos: {fileID: 3968095304872162619}
   LeftDownPos: {fileID: 3968095303473047927}
   RightUpPos: {fileID: 3968095304828030596}
-  bullet: {fileID: 7532743279201770156, guid: 2379b4730c7611649afffa4e72952388, type: 3}
+  bullet:
+  - {fileID: 8422481484934171430, guid: caf432d407b91e146b9ebb8d7757ebe3, type: 3}
+  - {fileID: 225589402612341245, guid: a78d53845c7b262439d22620df501f08, type: 3}
   bulletParent: {fileID: 3968095304748549728}

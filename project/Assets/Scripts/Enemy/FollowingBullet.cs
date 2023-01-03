@@ -14,12 +14,13 @@ public class FollowingBullet : MonoBehaviour
     {
         PM = GetComponent<PlayerMove>();
         Target = GameObject.FindGameObjectWithTag("Player").transform;
-        Destroy(this.gameObject, 4);
+        Destroy(this.gameObject, 3);
     }
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, Target.position, BulletSpeed * Time.deltaTime);
+        Vector2 targerPos = new Vector2(Target.position.x, Target.position.y + 0.8f);
+        transform.position = Vector2.MoveTowards(this.transform.position, targerPos, BulletSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

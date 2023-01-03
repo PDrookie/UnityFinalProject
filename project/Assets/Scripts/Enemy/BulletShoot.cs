@@ -6,6 +6,7 @@ public class BulletShoot : MonoBehaviour
 {
 
     GameObject Target;
+    public float disappearTime;
     public float BulletSpeed;
     Rigidbody2D bulletRB;
     private PlayerMove PM;
@@ -18,7 +19,7 @@ public class BulletShoot : MonoBehaviour
         Target = GameObject.FindGameObjectWithTag("Player");
         Vector2 moveDir = (Target.transform.position - transform.position).normalized * BulletSpeed;
         bulletRB.velocity = new Vector2(moveDir.x, moveDir.y + 0.5f);
-        Destroy(this.gameObject, 2);
+        Destroy(this.gameObject, disappearTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

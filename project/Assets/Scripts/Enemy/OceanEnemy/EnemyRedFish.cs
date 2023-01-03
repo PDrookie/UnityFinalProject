@@ -17,7 +17,7 @@ public class EnemyRedFish : OceanEnemy
     public Transform RightUpPos;
     private Transform player;
 
-    public GameObject bullet;
+    public GameObject[] bullet;
     public GameObject bulletParent;
 
     private bool PlayerCome = false;
@@ -49,7 +49,8 @@ public class EnemyRedFish : OceanEnemy
         }
         else if (distanceFromPlayer <= shootingRange && NextFireTime < Time.time)
         {
-            Instantiate(bullet, bulletParent.transform.position, Quaternion.identity);
+            int mode = Random.Range(0, 2);
+            Instantiate(bullet[mode], bulletParent.transform.position, Quaternion.identity);
             NextFireTime = Time.time + fireRate;
         }
         else
