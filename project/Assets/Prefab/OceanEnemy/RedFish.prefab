@@ -259,6 +259,8 @@ MonoBehaviour:
   Health: 25
   EnemyCauseDamage: 3
   flashTime: 0.2
+  collection: {fileID: 8044649120450289091, guid: c092f8a91a29a19409882d6a7e1603f6, type: 3}
+  DropNumber: 2
   Speed: 1.5
   startWaitTime: 0.2
   AttackRange: 12

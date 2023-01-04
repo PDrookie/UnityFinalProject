@@ -13,6 +13,10 @@ public class OceanEnemy : MonoBehaviour
     private Color originalColor;
     private PlayerMove PM;
 
+    [Header("drop")]
+    [SerializeField] private GameObject collection;
+    [SerializeField] private int DropNumber;
+
     // Start is called before the first frame update
     public void Start()
     {
@@ -25,9 +29,18 @@ public class OceanEnemy : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+
+
         if (Health <= 0)
         {
             Destroy(gameObject);
+            for(int i = 0; i < DropNumber; i++)
+            {
+                int RanX = Random.Range(-3, 3);
+                int RanY = Random.Range(-3, 3);
+                Vector2 colletionPos = new Vector2(transform.position.x + RanX, transform.position.y + RanY);
+                Instantiate(collection, colletionPos, Quaternion.identity);
+            }
         }
     }
 
