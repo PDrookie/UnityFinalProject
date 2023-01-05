@@ -64,7 +64,7 @@ public abstract class CaveEnemy : MonoBehaviour
     {
         if (collision.transform.tag.Equals("weapon"))
         {
-            Health -= PA.PlayerAtk;
+            Health -= PA.PlayerAtk * PA.ATKs[PA.TakingWeapon];
         }
     }
 }

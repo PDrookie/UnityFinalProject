@@ -37,7 +37,7 @@ public class SlimePatrol : MonoBehaviour
     {
         if (movingLeft)
         {
-            if(enemy.position.x >= leftEdge.position.x)
+            if(enemy.position.x >= leftEdge.position.x)    //¦³°ÝÃD
                 MoveInDirection(-1);
             else
             {

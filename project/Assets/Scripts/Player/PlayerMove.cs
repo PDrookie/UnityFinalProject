@@ -13,8 +13,8 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private LayerMask LM;
     [SerializeField] private Transform Checkpoint;
     [SerializeField] private string AirWallTag;
-    
-    [SerializeField] private float MoveSpeed;
+
+    public float MoveSpeed;
     [SerializeField] private float JumpForce;
     [SerializeField] private float WallJumpXForce;
     [SerializeField] private float SlideGravity;
@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
 
     void Start()
     {
-        
+
         RB = GetComponent<Rigidbody2D>();
         NormalGravity = RB.gravityScale;
         NotOnWallOrSkill = true;
@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
         IsHited = false;
         //transform.position = InitailPos;  
     }
-    
+
     void Update()
     {
         if (Input.GetButtonDown("Jump") && JumpCount > 0)

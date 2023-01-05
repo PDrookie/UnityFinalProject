@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
 {
     public bool IsAttack;
     private Animator PlayerAni;
-    private Animator SwordAni;
+    private Animator WeaponAni;
     private float TimeCounter;
     private Transform weapon;
     private PlayerAttributes PA;
@@ -25,9 +25,10 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             weapon = transform.GetChild(PA.TakingWeapon + 1);
+            PlayerAni.SetInteger("WeaponList", PA.TakingWeapon);
             weapon.gameObject.SetActive(true);
-            SwordAni = weapon.GetComponent<Animator>();
-            SwordAni.SetBool("IsAttack", true);
+            WeaponAni = weapon.GetComponent<Animator>();
+            WeaponAni.SetBool("IsAttack", true);
             IsAttack = true;
             PlayerAni.SetBool("IsAttack", true);
         }
