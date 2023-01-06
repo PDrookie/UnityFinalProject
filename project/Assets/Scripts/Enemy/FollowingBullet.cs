@@ -7,12 +7,12 @@ public class FollowingBullet : MonoBehaviour
 
     Transform Target;
     public float BulletSpeed;
-    private PlayerMove PM;
+    private PlayerAttributes PA;
 
     // Start is called before the first frame update
     void Start()
     {
-        PM = GetComponent<PlayerMove>();
+        PA = GameObject.Find("Player").GetComponent<PlayerAttributes>();
         Target = GameObject.FindGameObjectWithTag("Player").transform;
         Destroy(this.gameObject, 3);
     }
@@ -27,10 +27,8 @@ public class FollowingBullet : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player"))
         {
-            Debug.Log("Hitttt");
+            PA.HP -= 1;
             Destroy(this.gameObject, 0.1f);
-            //PM.IsHited = true;
-            //乾這邊有鬼 佳豪哥你加油
         }
     }
 }

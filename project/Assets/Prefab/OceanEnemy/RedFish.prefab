@@ -170,6 +170,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FishMid
       objectReference: {fileID: 0}
+    - target: {fileID: 1849596494334278, guid: d44e26ae803d04779a1c713330506a83, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4863804054061778, guid: d44e26ae803d04779a1c713330506a83, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -221,6 +225,10 @@ PrefabInstance:
     - target: {fileID: 4863804054061778, guid: d44e26ae803d04779a1c713330506a83, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58962777803966084, guid: d44e26ae803d04779a1c713330506a83, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 212511419452972094, guid: d44e26ae803d04779a1c713330506a83, type: 3}
       propertyPath: m_SortingLayer

@@ -28,6 +28,7 @@ public class PlayerMove : MonoBehaviour
     public bool IsHited;
     private float NormalGravity;
     public float HorizontalMove;
+    public float VerticalMove;
     private bool Ground;
     private bool Ocean;
 
@@ -65,6 +66,11 @@ public class PlayerMove : MonoBehaviour
         {
             Ground = false;
             Ocean = true;
+        }
+        else
+        {
+            Ground = true;
+            Ocean = false;
         }
         if (Ground)
         {
@@ -109,7 +115,12 @@ public class PlayerMove : MonoBehaviour
 
             HorizontalMovement();
         }
-
+        else if (Ocean)
+        {
+            HorizontalMovement();
+            VerticalMovement();
+            RB.gravityScale = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -168,6 +179,12 @@ public class PlayerMove : MonoBehaviour
         {
             transform.localScale = new Vector3(1.692233f, transform.localScale.y, 1);
         }
+    }
+
+    void VerticalMovement()
+    {
+        VerticalMove = Input.GetAxisRaw("Vertical");
+        RB.velocity = new Vector2(RB.velocity.x, VerticalMove * MoveSpeed);
     }
 
     void jump()

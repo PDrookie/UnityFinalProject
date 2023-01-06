@@ -19,6 +19,14 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.position.y < -45)
+        {
+            PlayerAni.SetBool("InOcean", true);
+        }
+        else
+        {
+            PlayerAni.SetBool("InOcean", false);
+        }
         if (PM.IsHited)
         {
             PlayerAni.SetBool("IsHit", true);
