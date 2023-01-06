@@ -97,7 +97,7 @@ public class GUI : MonoBehaviour
             if (SkillActive[i])
             {
                 SkillImage[i].gameObject.SetActive(true);
-                SkillImage[i].localPosition = new Vector2(-442 + (132 * m), -120);
+                SkillImage[i].localPosition = new Vector2(-470 + (65 * m), -190);
                 m++;
             }
         }
