@@ -28,6 +28,8 @@ public class PlayerMove : MonoBehaviour
     public bool IsHited;
     private float NormalGravity;
     public float HorizontalMove;
+    private bool Ground;
+    private bool Ocean;
 
     private void Awake()
     {
@@ -59,43 +61,54 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Jump") && JumpCount > 0)
+        if (transform.position.y < -45)
         {
-            SpacePress = true;
+            Ground = false;
+            Ocean = true;
+        }
+        if (Ground)
+        {
+            if (Input.GetButtonDown("Jump") && JumpCount > 0)
+            {
+                SpacePress = true;
+            }
         }
     }
 
     private void FixedUpdate()
     {
-        if (IsHited)
+        if (Ground)
         {
-            return;
-        }
-        IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.3f, LM);
-        if (!IsJumping)
-        {
-            JumpCount = MaxJumpTime;
-        }
-        if (WallTrigger.OnWall && RB.velocity.y < 0)
-        {
-            RB.gravityScale = SlideGravity;
-            if (SpacePress)
+            if (IsHited)
             {
-                WallJump(WallTrigger.WallDirection);
+                return;
+            }
+            IsJumping = !Physics2D.OverlapCircle(Checkpoint.position, 0.3f, LM);
+            if (!IsJumping)
+            {
+                JumpCount = MaxJumpTime;
+            }
+            if (WallTrigger.OnWall && RB.velocity.y < 0)
+            {
+                RB.gravityScale = SlideGravity;
+                if (SpacePress)
+                {
+                    WallJump(WallTrigger.WallDirection);
+                }
+                else
+                {
+                    HorizontalMove = Input.GetAxisRaw("Horizontal");
+                    RB.velocity = new Vector2(HorizontalMove * MoveSpeed, RB.velocity.y);
+                }
             }
             else
             {
-                HorizontalMove = Input.GetAxisRaw("Horizontal");
-                RB.velocity = new Vector2(HorizontalMove * MoveSpeed, RB.velocity.y);
+                RB.gravityScale = NormalGravity;
+                jump();
             }
-        }
-        else
-        {
-            RB.gravityScale = NormalGravity;
-            jump();
-        }
 
-        HorizontalMovement();
+            HorizontalMovement();
+        }
 
     }
 

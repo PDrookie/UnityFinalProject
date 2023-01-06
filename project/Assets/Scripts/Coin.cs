@@ -5,13 +5,17 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     private int CoinPlayerGet = 0;
+    private PlayerAttributes PA;
+    private void Start()
+    {
+        PA = GameObject.Find("Player").GetComponent<PlayerAttributes>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.transform.tag == "Player")
         {
             CoinPlayerGet++;
-            Debug.Log(CoinPlayerGet);   
-            //佳豪哥這邊金幣增加
+            PA.Coins++;
             Destroy(gameObject);
         }
     }

@@ -9,6 +9,7 @@ TagManager:
   - CaveEnemy
   - weapon
   - mystery
+  - warrior
   layers:
   - Default
   - TransparentFX

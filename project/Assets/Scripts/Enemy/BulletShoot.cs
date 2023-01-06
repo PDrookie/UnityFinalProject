@@ -9,12 +9,12 @@ public class BulletShoot : MonoBehaviour
     public float disappearTime;
     public float BulletSpeed;
     Rigidbody2D bulletRB;
-    private PlayerMove PM;
+    private PlayerAttributes PA;
 
     // Start is called before the first frame update
     void Start()
     {
-        PM = GetComponent<PlayerMove>();
+        PA = GameObject.Find("Player").GetComponent<PlayerAttributes>();
         bulletRB = GetComponent<Rigidbody2D>();
         Target = GameObject.FindGameObjectWithTag("Player");
         Vector2 moveDir = (Target.transform.position - transform.position).normalized * BulletSpeed;
@@ -26,10 +26,9 @@ public class BulletShoot : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player"))
         {
-            Debug.Log("Hitttt");            
+            PA.HP -= 1;
             Destroy(this.gameObject, 0.1f);
-            //PM.IsHited = true;
-            //乾這邊有鬼 佳豪哥你加油
+            
         }
     }
 }

@@ -35,6 +35,10 @@ public class SlimePatrol : MonoBehaviour
 
     private void Update()
     {
+        if(enemy == null)
+        {
+            return;
+        }
         if (movingLeft)
         {
             if(enemy.position.x >= leftEdge.position.x)    //¦³°ÝÃD

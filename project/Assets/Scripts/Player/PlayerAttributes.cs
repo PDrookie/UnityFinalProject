@@ -7,15 +7,14 @@ public class WeaponConstants
     public const int Sword = 0;
     public const int Hammer = 1;
     public const int Sycthe = 2;
-    public const int Rifle = 3;
 }
 
 public class PlayerAttributes : MonoBehaviour
 {
     public int HP = 5;
+    public int Coins = 0;
     public int[] ATKs;
-    [SerializeField] private int DEX;
-    [SerializeField] private int DEF;
+
     [SerializeField] private int SpeedUpCD;
     [SerializeField] private int ATKUpCD;
     [SerializeField] private int HealCD;
@@ -31,7 +30,7 @@ public class PlayerAttributes : MonoBehaviour
 
     private bool doubleJump;
     public int TakingWeapon;
-    private int HavingWeapon;
+    public bool[] HavingWeapon = new bool[4];
     public int PlayerAtk;
 
     private float SpeedTimeCounter;
@@ -39,10 +38,10 @@ public class PlayerAttributes : MonoBehaviour
     private float HealTimeCounter;
     private float InvicibleTimeCounter;
 
-    SpeedUp SU;
-    ATKUp AU;
-    Heal H;
-    Invincible I;
+    public SpeedUp SU;
+    public ATKUp AU;
+    public Heal H;
+    public Invincible I;
     GameObject Player;
 
     private bool DoubleJump
@@ -67,7 +66,7 @@ public class PlayerAttributes : MonoBehaviour
         SU = new SpeedUp(Player);
         SU.SpeedMul = SpeedMul;
         SU.ContinueTime = SpeedUPContinueTime;
-        SU.active = true;
+        SU.active = false;
         SU.inCD = false;
         SU._Using = false;
         SU.SetCD(SpeedUpCD);
@@ -75,20 +74,20 @@ public class PlayerAttributes : MonoBehaviour
         AU = new ATKUp(Player);
         AU.ATKMul = ATKMul;
         AU.ContinueTime = ATKUPContinueTime;
-        AU.active = true;
+        AU.active = false;
         AU._Using = false;
         AU.inCD = false;
         AU.SetCD(ATKUpCD);
         //初始化治療
         H = new Heal(Player);
         H.HealNum = HealNum;
-        H.active = true;
+        H.active = false;
         H._Using = false;
         H.inCD = false;
         H.SetCD(HealCD);
         //初始化無敵
         I = new Invincible(Player);
-        I.active = true;
+        I.active = false;
         I._Using = false;
         I.inCD = false;
         I.ContinueTime = InvicibleContinueTime;
@@ -100,7 +99,8 @@ public class PlayerAttributes : MonoBehaviour
         InvicibleTimeCounter = 0;
 
         DoubleJump = false;
-        TakingWeapon = WeaponConstants.Hammer;
+        HavingWeapon[0] = true;
+        TakingWeapon = WeaponConstants.Sword;
     }
 
     // Update is called once per frame
@@ -175,6 +175,7 @@ public class PlayerAttributes : MonoBehaviour
         {
             H.inCD = true;
             H.Effect();
+            HP = Mathf.Clamp(HP, 0, 5);
             HealTimeCounter = 0;
         }
         else if (H.inCD && HealTimeCounter >= H.CD && H.active)

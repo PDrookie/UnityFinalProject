@@ -7,6 +7,7 @@ public class PlayerHited : MonoBehaviour
     [SerializeField]private float HitForce;
     [SerializeField] private float HitTime;
     [SerializeField] private GameObject DialogBox;
+    [SerializeField] private GameObject DialogBox2;
     private Rigidbody2D playerRB;
     private PlayerMove PM;
     private float countTime;
@@ -52,12 +53,20 @@ public class PlayerHited : MonoBehaviour
         {
             DialogBox.SetActive(true);
         }
+        if (collision.transform.tag.Equals("warrior"))
+        {
+            DialogBox2.SetActive(true);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.transform.tag.Equals("mystery"))
         {
             DialogBox.SetActive(false);
+        }
+        if (collision.transform.tag.Equals("warrior"))
+        {
+            DialogBox2.SetActive(false);
         }
     }
 }

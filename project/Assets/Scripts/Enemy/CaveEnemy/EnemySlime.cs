@@ -35,7 +35,6 @@ public class EnemySlime : CaveEnemy
         {
             Vector2 PlayerPos = new Vector2(player.transform.position.x, player.transform.position.y + 0.8f);
             transform.position = Vector2.MoveTowards(this.transform.position, PlayerPos, 2 * Time.deltaTime);
-            Debug.Log(transform.position);
 
             if (cooldowniTimer >= attackCoolDown)
             {
