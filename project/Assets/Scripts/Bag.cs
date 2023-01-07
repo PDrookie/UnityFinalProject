@@ -17,6 +17,17 @@ public class Bag : MonoBehaviour
     [SerializeField] private Sprite BlackInvi;
     [SerializeField] private Sprite BlackHeal;
 
+    [SerializeField] private Sprite NorSword;
+    [SerializeField] private Sprite NorHammer;
+    [SerializeField] private Sprite NorScyche;
+
+    [SerializeField] private Sprite BlackSword;
+    [SerializeField] private Sprite BlackHammer;
+    [SerializeField] private Sprite BlackScyche;
+
+    [SerializeField] private GameObject Sword;
+    [SerializeField] private GameObject Hammer;
+    [SerializeField] private GameObject Scyche;
     [SerializeField]private Transform bag;
     private PlayerAttributes PA;
     private TMP_Text MoneyDisplayer;
@@ -42,6 +53,30 @@ public class Bag : MonoBehaviour
 
         MoneyDisplayer.text = PA.Coins.ToString();
 
+        if (PA.HavingWeapon[0])
+        {
+            Sword.GetComponent<Image>().sprite = NorSword;
+        }
+        else
+        {
+            Sword.GetComponent<Image>().sprite = BlackSword;
+        }
+        if (PA.HavingWeapon[1])
+        {
+            Hammer.GetComponent<Image>().sprite = NorHammer;
+        }
+        else
+        {
+            Hammer.GetComponent<Image>().sprite = BlackHammer;
+        }
+        if (PA.HavingWeapon[2])
+        {
+            Scyche.GetComponent<Image>().sprite = NorScyche;
+        }
+        else
+        {
+            Scyche.GetComponent<Image>().sprite = BlackScyche;
+        }
         if (PA.SU.active)
         {
             Speed.GetComponent<Image>().sprite = NorSpeed;
@@ -81,10 +116,12 @@ public class Bag : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Tab) && !bag.gameObject.activeInHierarchy)
         {
             bag.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
         else if (Input.GetKeyDown(KeyCode.Tab) && bag.gameObject.activeInHierarchy)
         {
             bag.gameObject.SetActive(false);
+            Time.timeScale = 1;
         }
         if (!bag.gameObject.activeInHierarchy)
         {

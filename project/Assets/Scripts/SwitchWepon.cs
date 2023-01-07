@@ -11,6 +11,7 @@ public class SwitchWepon : MonoBehaviour
     private GameObject[] Weapons;
 
     [SerializeField] private GameObject Glass;
+    [SerializeField] private GameObject Thiss;
 
     [SerializeField] private Sprite NorSword;
     [SerializeField] private Sprite NorHammer;
@@ -37,6 +38,10 @@ public class SwitchWepon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Thiss.activeInHierarchy)
+        {
+            return;
+        }
         if (PA.HavingWeapon[0])
         {
             Sword.GetComponent<Image>().sprite = NorSword;
@@ -63,11 +68,13 @@ public class SwitchWepon : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.A))
         {
-            for (int i = GlassOnWhich - 1; i > 0; i--)
+            for (int i = GlassOnWhich - 1; i >= 0; i--)
             {
                 if (PA.HavingWeapon[i])
                 {
                     Glass.transform.position = new Vector2(Weapons[i].transform.position.x, Glass.transform.position.y);
+                    GlassOnWhich = i;
+                    break;
                 }
             }
         }
@@ -78,8 +85,14 @@ public class SwitchWepon : MonoBehaviour
                 if (PA.HavingWeapon[i])
                 {
                     Glass.transform.position = new Vector2(Weapons[i].transform.position.x, Glass.transform.position.y);
+                    GlassOnWhich = i;
+                    break;
                 }
             }
+        }
+        else if (Input.GetKeyDown(KeyCode.Return))
+        {
+            PA.TakingWeapon = GlassOnWhich;
         }
     }
 }

@@ -43,6 +43,7 @@ public class Shop : MonoBehaviour
         PA = GameObject.Find("Player").GetComponent<PlayerAttributes>();
         MoneyDisplayer = ShopPanel.transform.Find("MoneyDisplayer").GetComponent<TMP_Text>();
         Glass = ShopPanel.transform.Find("glass");
+        Arrow.GetComponent<Image>().sprite = DownArrow;
     }
 
     // Update is called once per frame
@@ -93,7 +94,7 @@ public class Shop : MonoBehaviour
                     if (!PA.HavingWeapon[1] && PA.Coins >= HamPrice)
                     {
                         PA.HavingWeapon[1] = true;
-                        transform.GetChild(11).GetChild(0).GetComponent<Image>().sprite = HamSoldOut;
+                        transform.GetChild(10).GetChild(0).GetComponent<Image>().sprite = HamSoldOut;
                         PA.Coins -= HamPrice;
                     }
                     else if(!PA.HavingWeapon[1] && PA.Coins < HamPrice)
@@ -105,7 +106,7 @@ public class Shop : MonoBehaviour
                     if (!PA.HavingWeapon[2] && PA.Coins >= ScyPrice)
                     {
                         PA.HavingWeapon[2] = true;
-                        transform.GetChild(11).GetChild(1).GetComponent<Image>().sprite = ScySoldOut;
+                        transform.GetChild(10).GetChild(1).GetComponent<Image>().sprite = ScySoldOut;
                         PA.Coins -= ScyPrice;
                     }
                     else if (!PA.HavingWeapon[2] && PA.Coins < ScyPrice)
@@ -117,7 +118,7 @@ public class Shop : MonoBehaviour
                     if (!PA.SU.active && PA.Coins >= SpeedPrice)
                     {
                         PA.SU.active = true;
-                        transform.GetChild(11).GetChild(2).GetComponent<Image>().sprite = SpeedSoldOut;
+                        transform.GetChild(10).GetChild(2).GetComponent<Image>().sprite = SpeedSoldOut;
                         PA.Coins -= SpeedPrice;
                     }
                     else if (!PA.SU.active && PA.Coins < SpeedPrice)
@@ -129,7 +130,7 @@ public class Shop : MonoBehaviour
                     if (!PA.AU.active && PA.Coins >= ATKPrice)
                     {
                         PA.AU.active = true;
-                        transform.GetChild(11).GetChild(3).GetComponent<Image>().sprite = ATKSoldOut;
+                        transform.GetChild(10).GetChild(3).GetComponent<Image>().sprite = ATKSoldOut;
                         PA.Coins -= ATKPrice;
                     }
                     else if (!PA.AU.active && PA.Coins < ATKPrice)
@@ -141,7 +142,7 @@ public class Shop : MonoBehaviour
                     if (!PA.I.active && PA.Coins >= VinPrice)
                     {
                         PA.I.active = true;
-                        transform.GetChild(11).GetChild(4).GetComponent<Image>().sprite = VinSoldOut;
+                        transform.GetChild(10).GetChild(4).GetComponent<Image>().sprite = VinSoldOut;
                         PA.Coins -= VinPrice;
                     }
                     else if (!PA.I.active && PA.Coins < VinPrice)
@@ -153,7 +154,7 @@ public class Shop : MonoBehaviour
                     if (!PA.H.active && PA.Coins >= HealPrice)
                     {
                         PA.H.active = true;
-                        transform.GetChild(11).GetChild(5).GetComponent<Image>().sprite = HealSoldOut;
+                        transform.GetChild(10).GetChild(5).GetComponent<Image>().sprite = HealSoldOut;
                         PA.Coins -= HealPrice;
                     }
                     else if (!PA.H.active && PA.Coins < HealPrice)
