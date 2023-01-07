@@ -17,14 +17,14 @@ public class PauseGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !ESCpress)
+        if (Input.GetKeyDown(KeyCode.P) && !ESCpress)
         {
             ESCpress = true;
             Time.timeScale = 0;
             panel.SetActive(true);
             maincamera.GetComponent<RapidBlurEffect>().enabled = true;
         }
-        else if (Input.GetKeyDown(KeyCode.Escape) && ESCpress)
+        else if (Input.GetKeyDown(KeyCode.P) && ESCpress)
         {
             ESCpress = false;
             Time.timeScale = 1;

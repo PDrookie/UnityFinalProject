@@ -8,6 +8,7 @@ public class PlayerHited : MonoBehaviour
     [SerializeField] private float HitTime;
     [SerializeField] private GameObject DialogBox;
     [SerializeField] private GameObject DialogBox2;
+    private PlayerAttributes PA;
     private Rigidbody2D playerRB;
     private PlayerMove PM;
     private float countTime;
@@ -18,6 +19,7 @@ public class PlayerHited : MonoBehaviour
     {
         playerRB = transform.GetComponent<Rigidbody2D>();
         PM = transform.GetComponent<PlayerMove>();
+        PA = transform.GetComponent<PlayerAttributes>();
         countTime = 0;
     }
 
@@ -44,6 +46,15 @@ public class PlayerHited : MonoBehaviour
             playerRB.velocity = Vector2.zero;
             PM.IsHited = true;
             playerRB.AddForce(new Vector2(HitForce * (transform.position.x - collision.transform.position.x), HitForce * (transform.position.y - collision.transform.position.y)));
+            if (PA._Invicible)
+            {
+                PA._Invicible = false;
+            }
+            else
+            {
+                PA.HP -= 1;
+            }
+ 
         }
     }
 

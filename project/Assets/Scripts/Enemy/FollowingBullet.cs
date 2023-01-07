@@ -27,7 +27,14 @@ public class FollowingBullet : MonoBehaviour
     {
         if (collision.transform.tag.Equals("Player"))
         {
-            PA.HP -= 1;
+            if (PA._Invicible)
+            {
+                PA._Invicible = false;
+            }
+            else
+            {
+                PA.HP -= 1;
+            }
             Destroy(this.gameObject, 0.1f);
         }
     }

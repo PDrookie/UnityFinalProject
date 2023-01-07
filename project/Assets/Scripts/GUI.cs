@@ -10,6 +10,7 @@ public class GUI : MonoBehaviour
     private bool[] SkillActive;
     [SerializeField] private Sprite BlackHeart;
     [SerializeField] private Sprite PinkHeart;
+    [SerializeField] private GameObject DieImage;
     private GameObject Player;
     private PlayerAttributes PA;
 
@@ -32,6 +33,8 @@ public class GUI : MonoBehaviour
                 HPbar[2].GetComponent<Image>().sprite = BlackHeart;
                 HPbar[3].GetComponent<Image>().sprite = BlackHeart;
                 HPbar[4].GetComponent<Image>().sprite = BlackHeart;
+                Time.timeScale = 1;
+                DieImage.SetActive(true);
                 break;
             case 1:
                 HPbar[0].GetComponent<Image>().sprite = PinkHeart;
@@ -69,11 +72,11 @@ public class GUI : MonoBehaviour
                 HPbar[4].GetComponent<Image>().sprite = PinkHeart;
                 break;
             default:
-                HPbar[0].GetComponent<Image>().sprite = PinkHeart;
-                HPbar[1].GetComponent<Image>().sprite = PinkHeart;
-                HPbar[2].GetComponent<Image>().sprite = PinkHeart;
-                HPbar[3].GetComponent<Image>().sprite = PinkHeart;
-                HPbar[4].GetComponent<Image>().sprite = PinkHeart;
+                HPbar[0].GetComponent<Image>().sprite = BlackHeart;
+                HPbar[1].GetComponent<Image>().sprite = BlackHeart;
+                HPbar[2].GetComponent<Image>().sprite = BlackHeart;
+                HPbar[3].GetComponent<Image>().sprite = BlackHeart;
+                HPbar[4].GetComponent<Image>().sprite = BlackHeart;
                 break;
         }
         if (PA.SU.active)

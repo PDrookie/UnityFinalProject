@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponConstants
 {
@@ -28,9 +29,25 @@ public class PlayerAttributes : MonoBehaviour
     [SerializeField] private float ATKUPContinueTime;
     [SerializeField] private float InvicibleContinueTime;
 
+    [SerializeField] private Sprite NorSpeed;
+    [SerializeField] private Sprite NorATK;
+    [SerializeField] private Sprite NorInvi;
+    [SerializeField] private Sprite NorHeal;
+
+    [SerializeField] private Sprite BlackSpeed;
+    [SerializeField] private Sprite BlackATK;
+    [SerializeField] private Sprite BlackInvi;
+    [SerializeField] private Sprite BlackHeal;
+
+    [SerializeField]private GameObject Speed;
+    [SerializeField]private GameObject ATK;
+    [SerializeField]private GameObject Invi;
+    [SerializeField]private GameObject Heal;
+    [SerializeField] private GameObject Shop;
+
     private bool doubleJump;
     public int TakingWeapon;
-    public bool[] HavingWeapon = new bool[4];
+    public bool[] HavingWeapon = new bool[3];
     public int PlayerAtk;
 
     private float SpeedTimeCounter;
@@ -38,6 +55,7 @@ public class PlayerAttributes : MonoBehaviour
     private float HealTimeCounter;
     private float InvicibleTimeCounter;
 
+    public bool _Invicible;
     public SpeedUp SU;
     public ATKUp AU;
     public Heal H;
@@ -98,7 +116,8 @@ public class PlayerAttributes : MonoBehaviour
         HealTimeCounter = 0;
         InvicibleTimeCounter = 0;
 
-        DoubleJump = false;
+        _Invicible = false;
+        DoubleJump = true;
         HavingWeapon[0] = true;
         TakingWeapon = WeaponConstants.Sword;
     }
@@ -133,7 +152,7 @@ public class PlayerAttributes : MonoBehaviour
         }
 
         //Speed技能的狀態機
-        if (SU.active && Input.GetKeyDown(KeyCode.Q) && !SU.inCD && !SU._Using)
+        if (SU.active && Input.GetKeyDown(KeyCode.Q) && !SU.inCD && !SU._Using && !Shop.activeInHierarchy)
         {
             SU._Using = true;
             SU.Effect();
@@ -145,14 +164,16 @@ public class PlayerAttributes : MonoBehaviour
             SpeedTimeCounter = 0;
             SU._Using = false;
             SU.inCD = true;
+            Speed.GetComponent<Image>().sprite = BlackSpeed;
         }
         else if(SU.inCD && SpeedTimeCounter >= SU.CD && SU.active && !SU._Using)
         {
             SU.inCD = false;
+            Speed.GetComponent<Image>().sprite = NorSpeed;
         }
 
         //ATK技能的狀態機
-        if (AU.active && Input.GetKeyDown(KeyCode.W) && !AU.inCD && !AU._Using)
+        if (AU.active && Input.GetKeyDown(KeyCode.W) && !AU.inCD && !AU._Using && !Shop.activeInHierarchy)
         {
             AU._Using = true;
             AU.Effect();
@@ -164,35 +185,41 @@ public class PlayerAttributes : MonoBehaviour
             ATKTimeCounter = 0;
             AU._Using = false;
             AU.inCD = true;
+            ATK.GetComponent<Image>().sprite = BlackATK;
         }
         else if (AU.inCD && ATKTimeCounter >= AU.CD && AU.active && !AU._Using)
         {
             AU.inCD = false;
+            ATK.GetComponent<Image>().sprite = NorATK;
         }
 
         //Heal技能的狀態機
-        if (H.active && Input.GetKeyDown(KeyCode.E) && !H.inCD)
+        if (H.active && Input.GetKeyDown(KeyCode.R) && !H.inCD && !Shop.activeInHierarchy)
         {
             H.inCD = true;
             H.Effect();
             HP = Mathf.Clamp(HP, 0, 5);
             HealTimeCounter = 0;
+            Heal.GetComponent<Image>().sprite = BlackHeal;
         }
         else if (H.inCD && HealTimeCounter >= H.CD && H.active)
         { 
             H.inCD = false;
+            Heal.GetComponent<Image>().sprite = NorHeal;
         }
 
         //無敵技能的狀態機
-        if (I.active && Input.GetKeyDown(KeyCode.W) && !I.inCD)
+        if (I.active && Input.GetKeyDown(KeyCode.E) && !I.inCD && !Shop.activeInHierarchy)
         {
             I.inCD = true;
             I.Effect();
             InvicibleTimeCounter = 0;
+            Invi.GetComponent<Image>().sprite = BlackInvi;
         }
         else if (I.inCD && InvicibleTimeCounter >= I.CD && I.active)
         {
             I.inCD = false;
+            Invi.GetComponent<Image>().sprite = NorInvi;
         }
     }
 
@@ -224,7 +251,7 @@ public class ATKUp : Skills
     int OriginATK;
     public override void Effect()
     {
-        int OriginATK = Player.GetComponent<PlayerAttributes>().PlayerAtk;
+        OriginATK = Player.GetComponent<PlayerAttributes>().PlayerAtk;
         Player.GetComponent<PlayerAttributes>().PlayerAtk = OriginATK * ATKMul;
     }
     public override void Terminate()
@@ -259,8 +286,7 @@ public class Invincible : Skills
     GameObject Player;
     public override void Effect()
     {
-
-        //實作無敵
+        Player.GetComponent<PlayerAttributes>()._Invicible = true;
     }
     public override void Terminate()
     {

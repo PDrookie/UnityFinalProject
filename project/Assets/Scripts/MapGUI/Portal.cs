@@ -18,6 +18,10 @@ public class Portal : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
+            if (transform.name.Equals("ShopDestination") && collision.transform.position.x>transform.position.x)
+            {
+                return;
+            }
             Player.transform.position = new Vector2(portal.transform.position.x + arrivePos, portal.transform.position.y);
         }
     }

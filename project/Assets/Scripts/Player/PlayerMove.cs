@@ -54,7 +54,7 @@ public class PlayerMove : MonoBehaviour
         WallTrigger.OnWall = false;
         WallTrigger.WallDirection = 0;
         IsJumping = false;
-        MaxJumpTime = 1;                            //DEFAULT INI
+        MaxJumpTime = 2;                            //DEFAULT INI
         JumpCount = MaxJumpTime;
         IsHited = false;
         //transform.position = InitailPos;  

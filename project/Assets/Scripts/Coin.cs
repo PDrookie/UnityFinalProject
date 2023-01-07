@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
         if(collision.transform.tag == "Player")
         {
             CoinPlayerGet++;
-            PA.Coins++;
+            PA.Coins += 100;
             Destroy(gameObject);
         }
     }
